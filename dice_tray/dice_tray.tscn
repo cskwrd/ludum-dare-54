@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=3 uid="uid://bktgh0g2aiiiv"]
+
+[ext_resource type="Texture2D" uid="uid://53rtpnm7aujj" path="res://dice_tray/control-panel-bg.png" id="1_mdcmc"]
+[ext_resource type="Script" path="res://dice_tray/DiceTray.cs" id="2_kg5fr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oiruo"]
+texture = ExtResource("1_mdcmc")
+
+[node name="DiceTray" type="PanelContainer"]
+offset_right = 235.0
+offset_bottom = 75.0
+scale = Vector2(0.75, 0.75)
+theme_override_styles/panel = SubResource("StyleBoxTexture_oiruo")
+script = ExtResource("2_kg5fr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="TeamControls" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TeamPicker" type="OptionButton" parent="VBoxContainer/TeamControls"]
+layout_mode = 2
+item_count = 4
+selected = 0
+allow_reselect = true
+popup/item_0/text = "Yellow"
+popup/item_0/id = 0
+popup/item_1/text = "Red"
+popup/item_1/id = 1
+popup/item_2/text = "Green"
+popup/item_2/id = 2
+popup/item_3/text = "Blue"
+popup/item_3/id = 3
+
+[node name="PawnPicker" type="OptionButton" parent="VBoxContainer/TeamControls"]
+layout_mode = 2
+item_count = 4
+selected = 0
+allow_reselect = true
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+popup/item_3/text = "4"
+popup/item_3/id = 3
+
+[node name="Actionator" type="Button" parent="VBoxContainer/TeamControls"]
+layout_mode = 2
+text = "Move"
+
+[node name="OtherControls" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="DieOne" type="SpinBox" parent="VBoxContainer/OtherControls"]
+layout_mode = 2
+min_value = 1.0
+max_value = 6.0
+value = 1.0
+suffix = "pips"
+
+[node name="DieTwo" type="SpinBox" parent="VBoxContainer/OtherControls"]
+layout_mode = 2
+min_value = 1.0
+max_value = 6.0
+value = 1.0
+suffix = "pips"
+
+[node name="DiceCaster" type="Button" parent="VBoxContainer/OtherControls"]
+layout_mode = 2
+text = "🎲"
+
+[connection signal="pressed" from="VBoxContainer/TeamControls/Actionator" to="." method="OnActionatorButtonPressed"]

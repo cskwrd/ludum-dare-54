@@ -1,3 +1,25 @@
-[gd_scene format=3 uid="uid://g48rjtbu7dcm"]
+[gd_scene load_steps=5 format=3 uid="uid://g48rjtbu7dcm"]
+
+[ext_resource type="PackedScene" uid="uid://deo7lajm5yv8i" path="res://board/board.tscn" id="1_6cxou"]
+[ext_resource type="Script" path="res://universe/Universe.cs" id="1_paej2"]
+[ext_resource type="PackedScene" uid="uid://cc628l31pqk6g" path="res://pawn/pawn.tscn" id="2_w6tha"]
+[ext_resource type="PackedScene" uid="uid://bktgh0g2aiiiv" path="res://dice_tray/dice_tray.tscn" id="4_8wer8"]
 
 [node name="Universe" type="Node2D"]
+script = ExtResource("1_paej2")
+_pawnTemplate = ExtResource("2_w6tha")
+
+[node name="Board" parent="." instance=ExtResource("1_6cxou")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(15, 8)
+anchor_mode = 0
+zoom = Vector2(1.4, 1.4)
+
+[node name="DiceTray" parent="." instance=ExtResource("4_8wer8")]
+offset_left = 351.0
+offset_top = 238.0
+offset_right = 586.0
+offset_bottom = 313.0
+
+[connection signal="MovePawn" from="DiceTray" to="." method="OnMovePawnPressed"]

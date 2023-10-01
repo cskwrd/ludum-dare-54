@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc628l31pqk6g"]
+
+[ext_resource type="Script" path="res://pawn/Pawn.cs" id="1_hkobl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbtpa"]
+
+[node name="Pawn" type="Area2D"]
+script = ExtResource("1_hkobl")
+
+[node name="Skin" type="Sprite2D" parent="."]
+
+[node name="Bones" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_fbtpa")
