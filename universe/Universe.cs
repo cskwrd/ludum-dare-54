@@ -45,18 +45,9 @@ public partial class Universe : Node2D
 
 	private void OnMovePawnPressed(string selectedTeamColor, int selectedPawnIndex, int dieOne, int dieTwo)
 	{
-		GD.Print($"Selected team: '{selectedTeamColor}'");
-		GD.Print($"Selected pawn: '{selectedPawnIndex}'");
-		GD.Print($"Roll: {dieOne} + {dieTwo} = {dieOne + dieTwo}");
-
 		var teamColor = Enum.Parse<Teams>(selectedTeamColor);
 
-		// Pawn selectedPawn = GetSelectedPawn(teamColor, selectedPawnIndex);
-		// bool success = selectedPawn.Move(dieOne, dieTwo);
-
-		bool success = _board.TryMovePawn(teamColor, selectedPawnIndex, dieOne, dieTwo);
+		_board.TryMovePawn(teamColor, selectedPawnIndex, dieOne, dieTwo);
 	}
-
-    private Pawn GetSelectedPawn(Teams teamColor, int pawnIndex) => _board.GetPawn(teamColor, pawnIndex);
 
 }

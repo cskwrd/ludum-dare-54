@@ -1,0 +1,117 @@
+[gd_scene load_steps=11 format=3 uid="uid://b12y2c7yr6nyp"]
+
+[ext_resource type="Texture2D" uid="uid://kwirkrdlnxnk" path="res://user_dice_tray/user-control-panel.png" id="1_jb14i"]
+[ext_resource type="PackedScene" uid="uid://byijseef5wd42" path="res://die/die.tscn" id="2_hgdtn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7g4nr"]
+texture = ExtResource("1_jb14i")
+region_rect = Rect2(0, 0, 141, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufdd0"]
+atlas = ExtResource("1_jb14i")
+region = Rect2(35, 76, 31, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds2w8"]
+atlas = ExtResource("1_jb14i")
+region = Rect2(3, 111, 31, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cfqk"]
+atlas = ExtResource("1_jb14i")
+region = Rect2(3, 76, 31, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkevq"]
+atlas = ExtResource("1_jb14i")
+region = Rect2(67, 115, 71, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d471c"]
+atlas = ExtResource("1_jb14i")
+region = Rect2(67, 85, 71, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sidd"]
+atlas = ExtResource("1_jb14i")
+region = Rect2(141, 115, 71, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1c3q"]
+atlas = ExtResource("1_jb14i")
+region = Rect2(67, 85, 71, 29)
+
+[node name="UserDiceTray" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 142.0
+offset_bottom = 73.0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 142.0
+offset_bottom = 73.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_7g4nr")
+
+[node name="Pawn1" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 34.0
+offset_bottom = 36.0
+texture_normal = SubResource("AtlasTexture_ufdd0")
+texture_pressed = SubResource("AtlasTexture_ds2w8")
+texture_disabled = SubResource("AtlasTexture_2cfqk")
+stretch_mode = 3
+
+[node name="Pawn2" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 3.0
+offset_right = 66.0
+offset_bottom = 36.0
+texture_normal = SubResource("AtlasTexture_ufdd0")
+texture_pressed = SubResource("AtlasTexture_ds2w8")
+texture_disabled = SubResource("AtlasTexture_2cfqk")
+stretch_mode = 3
+
+[node name="Pawn3" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 37.0
+offset_right = 34.0
+offset_bottom = 70.0
+texture_normal = SubResource("AtlasTexture_ufdd0")
+texture_pressed = SubResource("AtlasTexture_ds2w8")
+texture_disabled = SubResource("AtlasTexture_2cfqk")
+stretch_mode = 3
+
+[node name="Pawn4" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 37.0
+offset_right = 66.0
+offset_bottom = 70.0
+texture_normal = SubResource("AtlasTexture_ufdd0")
+texture_pressed = SubResource("AtlasTexture_ds2w8")
+texture_disabled = SubResource("AtlasTexture_2cfqk")
+stretch_mode = 3
+
+[node name="DiceCaster" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 41.0
+offset_right = 138.0
+offset_bottom = 70.0
+texture_normal = SubResource("AtlasTexture_mkevq")
+texture_disabled = SubResource("AtlasTexture_d471c")
+
+[node name="Die1" parent="." instance=ExtResource("2_hgdtn")]
+position = Vector2(67, 3)
+
+[node name="Die2" parent="." instance=ExtResource("2_hgdtn")]
+position = Vector2(103, 3)
+
+[node name="ShowStopper" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 67.0
+offset_top = 41.0
+offset_right = 138.0
+offset_bottom = 70.0
+texture_normal = SubResource("AtlasTexture_4sidd")
+texture_disabled = SubResource("AtlasTexture_f1c3q")
