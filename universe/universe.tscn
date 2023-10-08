@@ -11,16 +11,11 @@ _pawnTemplate = ExtResource("2_w6tha")
 
 [node name="Board" parent="." instance=ExtResource("1_6cxou")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(15, 8)
-anchor_mode = 0
-zoom = Vector2(1.4, 1.4)
-
 [node name="AdminDiceTray" parent="." instance=ExtResource("4_xtxq8")]
-offset_left = 349.0
-offset_top = 236.0
-offset_right = 584.0
-offset_bottom = 311.0
+offset_left = 365.0
+offset_top = 247.0
+offset_right = 600.0
+offset_bottom = 322.0
 scale = Vector2(0.75, 0.75)
 
 [connection signal="MovePawn" from="AdminDiceTray" to="." method="OnMovePawnPressed"]
