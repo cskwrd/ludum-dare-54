@@ -1,14 +1,76 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc628l31pqk6g"]
+[gd_scene load_steps=12 format=3 uid="uid://cc628l31pqk6g"]
 
 [ext_resource type="Script" path="res://pawn/Pawn.cs" id="1_hkobl"]
+[ext_resource type="Texture2D" uid="uid://cc57ei33wkhev" path="res://pawn/idle-blue1.png" id="2_r0g6s"]
+[ext_resource type="Texture2D" uid="uid://dpp8k2dqwic6j" path="res://pawn/idle-blue2.png" id="3_pkys6"]
+[ext_resource type="Texture2D" uid="uid://dmjnisp4yfos1" path="res://pawn/idle-green1.png" id="4_rqe1x"]
+[ext_resource type="Texture2D" uid="uid://dkrs6q64d41du" path="res://pawn/idle-green2.png" id="5_uh3xg"]
+[ext_resource type="Texture2D" uid="uid://giski0mncaaj" path="res://pawn/idle-red1.png" id="6_e2r8r"]
+[ext_resource type="Texture2D" uid="uid://8h433ls5kyq0" path="res://pawn/idle-red2.png" id="7_11mj6"]
+[ext_resource type="Texture2D" uid="uid://btpoqlf132ux" path="res://pawn/idle-yellow1.png" id="8_tpeii"]
+[ext_resource type="Texture2D" uid="uid://ccogxqfvgo3jv" path="res://pawn/idle-yellow2.png" id="9_4b5we"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1folp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_r0g6s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pkys6")
+}],
+"loop": true,
+"name": &"blue_idle",
+"speed": 2.8
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_rqe1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uh3xg")
+}],
+"loop": true,
+"name": &"green_idle",
+"speed": 2.8
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_e2r8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_11mj6")
+}],
+"loop": true,
+"name": &"red_idle",
+"speed": 2.8
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_tpeii")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_4b5we")
+}],
+"loop": true,
+"name": &"yellow_idle",
+"speed": 2.8
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fbtpa"]
 
 [node name="Pawn" type="Area2D"]
 script = ExtResource("1_hkobl")
 
-[node name="Skin" type="Sprite2D" parent="."]
+[node name="Skin" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1folp")
+animation = &"blue_idle"
 
 [node name="Bones" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_fbtpa")
+
+[node name="AnimationIdler" type="Timer" parent="."]
+
+[connection signal="animation_looped" from="Skin" to="." method="OnSkinAnimationLooped"]
+[connection signal="timeout" from="AnimationIdler" to="." method="OnAnimationIdlerTimeout"]

@@ -8,30 +8,53 @@ public partial class Pawn : Area2D
 	
 	public int TrackPosition { get; set; } = -1;
 
-    private Texture2D _yellow = ResourceLoader.Load("res://pawn/dino-yellow.png") as Texture2D;
-	private Texture2D _red = ResourceLoader.Load("res://pawn/dino-red.png") as Texture2D;
-	private Texture2D _green = ResourceLoader.Load("res://pawn/dino-green.png") as Texture2D;
-	private Texture2D _blue = ResourceLoader.Load("res://pawn/dino-blue.png") as Texture2D;
+	private AnimatedSprite2D _skin;
+	private string _idleAnimationName = "yellow_idle";
+	private int _idleAnimationCountdown = 0;
+
+	private Timer _skinAnimationTimer;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		var skinTexture = Team switch
+		_idleAnimationName = Team switch
 		{
-			Teams.Yellow => _yellow,
-			Teams.Red => _red,
-			Teams.Green => _green,
-			Teams.Blue => _blue,
-			_ => _yellow
+			Teams.Yellow => @"yellow_idle",
+			Teams.Red => @"red_idle",
+			Teams.Green => @"green_idle",
+			Teams.Blue => @"blue_idle",
+			_ => @"yellow_idle",
 		};
 
-		var skin = GetNode<Sprite2D>("Skin");
-		skin.Texture = skinTexture;
+		_skin = GetNode<AnimatedSprite2D>("Skin");
+		_skin.Animation = _idleAnimationName;
+
+		_skinAnimationTimer = GetNode<Timer>("AnimationIdler");
+		_skinAnimationTimer.WaitTime = GD.RandRange(0.5, 3.5);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (_skinAnimationTimer.IsStopped())
+		{
+			_skinAnimationTimer.Start();
+		}
 	}
 
+	private void OnAnimationIdlerTimeout()
+	{
+		_skinAnimationTimer.WaitTime = GD.RandRange(4.5, 10.5);
+		_idleAnimationCountdown = GD.RandRange(1, 3);
+		_skin.Play();
+	}
+
+	private void OnSkinAnimationLooped()
+	{
+		if ((--_idleAnimationCountdown) < 1)
+		{
+			_skin.Stop();
+			_idleAnimationCountdown = 0;
+		}
+	}
 }
