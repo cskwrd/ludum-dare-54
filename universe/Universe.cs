@@ -13,6 +13,16 @@ public partial class Universe : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		// This sets the min window size (as you would expect).
+		// However just setting this will cause the window to load
+		// at the size set in Project Settings > Display > Window > Size > Viewport Width/Height.
+		// When this happens the screen will no longer be centered.
+		// To fix it, I toggled advanced settings to ON.
+		// Then set Project Settings > Display > Window > Size > Window Width/Height Override
+		// to the desired min size.
+		// That causes the window to load at the min size (and centered) even if the viewport size is smaller.
+		DisplayServer.WindowSetMinSize(new Vector2I(1280, 720));
+
 		_board = GetNode<Board>("Board");
 
 		NewGame();
